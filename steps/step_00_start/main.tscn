@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3]
+[gd_scene load_steps=15 format=3]
 
 [ext_resource type="Script" path="res://steps/step_00_start/level.gd" id="1_level"]
+[ext_resource type="Script" path="res://steps/step_00_start/room_camera.gd" id="9_camera"]
 
 [ext_resource type="Script" path="res://steps/step_00_start/debug_map.gd" id="2_map"]
 
@@ -39,6 +40,10 @@ ambient_light_source = 2
 ambient_light_color = Color(0.75, 0.76, 0.78, 1)
 ambient_light_energy = 1.0
 
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_gizmos"]
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_watch"]
+
 [node name="Main" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -52,12 +57,17 @@ directional_shadow_max_distance = 300.0
 [node name="Level" type="Node3D" parent="."]
 script = ExtResource("1_level")
 
+[node name="RoomCamera" type="Camera3D" parent="." node_paths=PackedStringArray("level")]
+script = ExtResource("9_camera")
+level = NodePath("../Level")
+
 [node name="Gizmos" type="Node3D" parent="." node_paths=PackedStringArray("level")]
 visible = false
 script = ExtResource("5_gizmos")
 level = NodePath("../Level")
 
 [node name="Lines" type="MeshInstance3D" parent="Gizmos"]
+mesh = SubResource("ImmediateMesh_gizmos")
 script = ExtResource("6_lines")
 
 [node name="Watch" type="Node3D" parent="." node_paths=PackedStringArray("level")]
@@ -65,6 +75,7 @@ script = ExtResource("7_watch")
 level = NodePath("../Level")
 
 [node name="Lines" type="MeshInstance3D" parent="Watch"]
+mesh = SubResource("ImmediateMesh_watch")
 script = ExtResource("6_lines")
 
 [node name="Camera" type="Camera3D" parent="Watch"]

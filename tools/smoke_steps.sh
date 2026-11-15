@@ -4,6 +4,7 @@
 # the GDScript warnings of every script (tools/check_warnings.py).
 # Usage: tools/smoke_steps.sh   (from anywhere)
 set -u
+main() {   # the whole script is one function: bash parses it completely before running it, so an edit in the shared tree cannot break a running copy
 
 project="$(cd "$(dirname "$0")/.." && pwd)"
 failed=0
@@ -31,3 +32,5 @@ else
 fi
 
 exit "$failed"
+}
+main "$@"; exit $?

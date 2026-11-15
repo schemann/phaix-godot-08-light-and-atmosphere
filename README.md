@@ -1,8 +1,11 @@
 # Light and Atmosphere in Godot 4
 
-Project files for tutorial 09 of the Godot 4 series by Phaix on YouTube (https://www.youtube.com/@Phaix).
+Project files for tutorial 08 of the Godot 4 series by Phaix on YouTube (https://www.youtube.com/@Phaix).
 
-Light a Godot 4.7 run whose rooms are built while the game plays. A lamp for every room, set from data: the plan's tint, the energy and the shadows of the room type, and a range worked out from the room. A warm exit light on every door, proven by a squint test that blurs the picture and measures the door against the wall. An environment made for closed interiors: no sky and no sun, a low warm fill that stays dark and never black, AgX tonemapping and glow above white. Volumetric fog that the lamps light without hiding the door, with its density taken from a test. Global illumination for rooms that do not exist in the editor: a script asks the engine which kinds can bake, and frame times measured on one machine decide between VoxelGI and SDFGI (LightmapGI is out). A quality switch on the Q key that keeps the expensive parts inside the frame budget. Every step is its own project folder.
+Light the generated rooms of a game like Roblox DOORS in Godot 4.
+We build an environment made for interiors, lamps that cast shadows, fog, glow and global illumination that works with rooms built while you play.
+
+A building has no sky and no sun: the Environment gets a custom colour background, a cold trace of ambient light and the Filmic tonemap. A lamp becomes a scene of its own, placed from Marker3D nodes, with shadows on and the shadow atlas explained. Depth fog and volumetric fog give the air a body, glow makes the emissive fixture look bright, and SDFGI bounces the light in rooms that did not exist a second ago, with GI Mode Disabled for everything that moves. Every step is its own project folder.
 
 ![Screenshot](screenshot.png)
 
@@ -14,12 +17,12 @@ that step. The project's main scene is the final step.
 
 | Folder | Part of the video |
 |---|---|
-| `steps/step_00_start` | Starting point (the final state of the previous tutorial) |
-| `steps/step_01_room_lights` | Step 1 - Room lights from data |
-| `steps/step_02_world_environment` | Step 2 - An environment for interiors |
-| `steps/step_03_volumetric_fog` | Step 3 - Volumetric fog |
-| `steps/step_04_runtime_gi` | Step 4 - Global illumination for runtime rooms |
-| `steps/step_05_quality_switch` | Step 5 - A quality switch |
+| `steps/step_00_start` | Starting point (the final state of tutorial 07) |
+| `steps/step_01_environment` | Step 1 - An environment for rooms |
+| `steps/step_02_lamps` | Step 2 - Lamps that cast shadows |
+| `steps/step_03_fog` | Step 3 - Fog |
+| `steps/step_04_glow` | Step 4 - Glow |
+| `steps/step_05_global_illumination` | Step 5 - Global illumination |
 
 ## Controls
 
@@ -33,6 +36,11 @@ in the video and in the HUD.
 godot --headless --path . -s res://tests/run_tests.gd
 ```
 
+## Support
+
+Support the channel: https://ko-fi.com/phaix or https://github.com/sponsors/schemann
+
 ## License
 
 Code and scenes: MIT (see LICENSE).
+The figure and its animations: Animated Characters Protagonists by Kenney (www.kenney.nl), CC0, see character/License.txt.
